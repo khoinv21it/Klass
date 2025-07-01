@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./to-do-app.css">
+    <title>To Do App</title>
+</head>
+<body class="bg-gray-100 text-gray-800 p-4">
+    <div class="container mx-auto"></div>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-2xl font-bold">Dashboard</h1>
+            <div class="flex items-center font-semibold">
+                <span id="clock" class="mr-2"></span>
+                <span id="greeting"></span>
+                <button id="themeToggle" class="ml-4 p-2 bg-sky-300 rounded-[50%]">🌙</button>
+            </div>
+        </div>
+
+        <section class="mb-6">
+            <h2 class="text-xl font-semibold mb-2">To-Do List</h2>
+            <div class="flex mb-2">
+                <input type="text" placeholder="Enter a task" id="taskInput" class="border p-2 flex-1 mr-2">
+                <button id="addTask" class="bg-gray-300 p-2 rounded">Add Task</button>
+            </div>
+            <div class="flex items-center space-x-2 mb-2">
+                <label class="text-sm mr-2">Filter: </label>
+                <button class="filter-btn bg-blue-400 hover:bg-blue-500 text-white p-1" data-filter="all">All</button>
+                <button class="filter-btn bg-green-400 hover:bg-green-500 p-1" data-filter="completed">Completed</button>
+                <button class="filter-btn bg-red-400 hover:bg-red-500 p-1" data-filter="incomplete">Incomplete</button>
+            </div>
+            <ul id="taskList" class="list-none"></ul>
+            <span id="taskError" class="text-red-500 hidden"></span>
+        </section>
+
+        <section>
+            <h2 class="text-xl font-semibold mb-2">Sticky Notes</h2>
+            <div class="flex mb-2">
+                <input id="noteInput" type="text" placeholder="Write a note..." class="border p-2 flex-1 mr-2">
+                <button id="addNote" class="bg-gray-300 p-2">Add Note</button>
+            </div>
+            <div id="noteContainer" class="flex flex-wrap gap-4"></div>
+            <span id="noteError" class="text-red-500 hidden"></span>
+        </section>
+
+    <script src="./to-do-app.js"></script>
+</body>
+</html>
