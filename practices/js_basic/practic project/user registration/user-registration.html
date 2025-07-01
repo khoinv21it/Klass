@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./user-registration.css">
+    <title>Registration Form</title>
+</head>
+<body>
+    <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 class="text-2xl font-bold mb-4 text-center">User Registration</h2>
+            <form action="" id="registrationForm" class="flex flex-col gap-4">
+                <div class="flex flex-col gap-1">
+                    <label for="fullname" class="text-sm font-medium">Full Name</label>
+                    <input type="text" id="fullname" class="p-2 border border-rounded" placeholder="Enter your full name">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="email" class="text-sm font-medium">Email</label>
+                    <input type="email" id="email" class="p-2 border border-rounded" placeholder="Enter your email">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+                
+                <div class="flex flex-col gap-1">
+                    <label for="password" class="text-sm font-medium">Password</label>
+                    <input type="password" id="password" class="p-2 border border-rounded" placeholder="Enter your password">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="confirmPassword" class="text-sm font-medium">Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="p-2 border border-rounded" placeholder="Confirm your password">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="phone" class="text-sm font-medium">Phone Number</label>
+                    <input type="phone" id="phone" class="p-2 border border-rounded" placeholder="Enter your phone number">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="text-sm font-medium">Gender</label>
+                    <div class="flex gap-4">
+                        <label><input type="radio" name="gender" value="male"> Male</label>
+                        <label><input type="radio" name="gender" value="female"> Feale</label>
+                        <label><input type="radio" name="gender" value="other"> Other</label>
+                    </div>
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="dob" class="text-sm font-medium">Date of Birth</label>
+                    <input type="date" name="" id="dob" class="p-2 border border-rounded">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="country" class="text-sm font-medium">Country</label>
+                    <select class="p-2 border rounded" id="country">
+                        <option value="">Select a country</option>
+                        <option value="VietNam">VietNam</option>
+                        <option value="USA">USA</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label class="text-sm font-medium">Hobbies</label>
+                    <div class="flex gap-4">
+                        <label><input type="checkbox" name="hobbies" value="reading"> Reading</label>
+                        <label><input type="checkbox" name="hobbies" value="gaming"> Gaming</label>
+                        <label><input type="checkbox" name="hobbies" value="sports"> Sports</label>
+                    </div>
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="profilePic" class="text-sm font-medium">Profile Picture</label>
+                    <input type="file" id="profilePic" class="p-2 border rounded" accept=".jpg,.jpeg,.png">
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <div class="flex flex-col">
+                    <label for="bio" class="text-sm font-medium">Bio / About You</label>
+                    <textarea id="bio" class="p-2 border rounded" rows="4" placeholder="Tell us about yourself"></textarea>
+                    <span class="error text-red-500 text-sm hidden"></span>
+                </div>
+
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded">Register</button>
+            </form>
+        </div>
+    </div>
+    <script src="./user-registration.js"></script>
+</body>
+</html>
