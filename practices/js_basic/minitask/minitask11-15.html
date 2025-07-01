@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mini task</title>
+  </head>
+  <body>
+    <h2>Bai 11</h2>
+    <input type="button" value="Hide" id="hideParaBtn" />
+    <p class="infoPara">Chúng ta chỉ thế thôi, hẹ hẹ ...</p>
+
+    <h2>Bai 12</h2>
+    <p class="greetingText"></p>
+
+    <h2>Bai 13</h2>
+    <input type="text" id="nameInput" />
+    <input type="button" value="Submit" id="formSubmit" />
+    <p id="nameError"></p>
+
+    <h2>Bai 14</h2>
+    <button id="onceBtn">One Time Click</button>
+
+    <h2>Bai 15</h2>
+    <textarea name="text area" id="bioInput" cols="30" rows="10"></textarea>
+
+    <script>
+      document
+        .getElementById("hideParaBtn")
+        .addEventListener("click", function () {
+          const para = document.querySelector(".infoPara");
+          para.style.display = "none";
+        });
+
+      const greetingText = document.querySelector(".greetingText");
+      const currentHour = new Date().getHours();
+      if (currentHour < 12) {
+        greetingText.textContent = "Chào buổi sáng!";
+      } else if (currentHour < 18) {
+        greetingText.textContent = "Chào buổi chiều!";
+      } else {
+        greetingText.textContent = "Chào buổi tối!";
+      }
+
+      document
+        .querySelector("#formSubmit")
+        .addEventListener("click", function () {
+          const nameInput = document.querySelector("#nameInput");
+          const nameError = document.querySelector("#nameError");
+          const nameValue = nameInput.value.trim();
+
+          if (!nameValue) {
+            nameInput.style.border = "2px solid red";
+
+            nameError.textContent = "Vui lòng nhập tên!";
+            nameError.style.display = "block";
+            nameError.style.color = "red";
+          } else {
+            nameInput.style.border = null;
+            nameError.style.display = "none";
+          }
+        });
+
+      document.getElementById("onceBtn").addEventListener("click", function () {
+        this.disabled = true;
+      });
+
+      document
+        .getElementById("bioInput")
+        .addEventListener("input", function () {
+          const countDisplay =
+            document.getElementById("charCount") ||
+            this.parentNode.appendChild(
+              Object.assign(document.createElement("div"), { id: "charCount" })
+            );
+          countDisplay.textContent = `Input count: ${+countDisplay.textContent.split(": ")[1] + 1 || 1}`;
+        });
+    </script>
+  </body>
+</html>

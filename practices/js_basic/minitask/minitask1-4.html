@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mini task</title>
+
+    <style>
+      .box {
+        width: auto;
+        color: white;
+        font-size: medium;
+        font-weight: bold;
+        background-color: rgb(6, 102, 134);
+      }
+
+      .deleteBtn {
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Bai1</h2>
+    <button id="changeTextBtn">Change text</button>
+    <div id="textDisplay"></div>
+
+    <h2>Bai2</h2>
+    <button id="toggleHighlightBtn">Toggle Btn</button>
+
+ 
+    <h2>Bai3+4</h2>
+    <input type="text" name="" id="itemInput" />
+    <input type="button" name="Add List" id="addItemBtn" value="Add List" />
+    <ul id="itemList"></ul>
+
+    <script>
+      document
+        .getElementById("changeTextBtn")
+        .addEventListener("click", function () {
+          const textDisplay = document.getElementById("textDisplay");
+          const newText = "Hello, JavaScript!";
+          textDisplay.textContent = newText;
+        });
+
+      document
+        .getElementById("toggleHighlightBtn")
+        .addEventListener("click", function () {
+          const button = document.getElementById("toggleHighlightBtn");
+          button.classList.toggle("box");
+        });
+
+      document
+        .getElementById("addItemBtn")
+        .addEventListener("click", function () {
+          const itemInput = document.getElementById("itemInput");
+          const newItemText = itemInput.value.trim();
+
+          if (newItemText) {
+            const listItem = document.createElement("li");
+            listItem.textContent = newItemText;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "Delete";
+            deleteBtn.classList.add("deleteBtn");
+
+            deleteBtn.addEventListener("click", function () {
+              listItem.remove(); 
+            });
+
+            listItem.appendChild(deleteBtn);
+
+            document.getElementById("itemList").appendChild(listItem);
+
+            itemInput.value = "";
+          }
+        });
+
+        
+    </script>
+  </body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h2>Bai5</h2>
+    <input type="button" value="Change Image" id="changeImageBtn" /> <br />
+    <img id="mainImage" src="" alt="" />
+
+    <h2>Bai6</h2>
+    <input type="text" id="usernameInput" />
+    <input type="button" value="check" id="submitUsername" />
+
+    <h2>Bai7</h2>
+    <section>
+      <input type="button" value="greet!" class="colorBtn" />
+      <input type="button" value="hello" class="colorBtn" />
+      <input type="button" value="world" class="colorBtn" />
+      <input type="button" value="free fire" class="colorBtn" />
+    </section>
+
+    <h2>Bai8</h2>
+    <div class="hoverBox" style="height: 200px;"></div>
+
+    <h2>Bai9</h2>
+    <p id="clockDisplay"></p>
+
+    <h2>Bai10</h2>
+    <input type="text" name="" id="emailInput">
+    <button id="validateBtn">Validate</button>
+
+
+
+    <script>
+      document
+        .getElementById("changeImageBtn")
+        .addEventListener("click", function () {
+          const imageUrl = "./src/img/dog.jpg";
+          const mainImage = document.getElementById("mainImage");
+          mainImage.src = imageUrl;
+          mainImage.alt = "Dog image";
+        });
+
+      document
+        .getElementById("submitUsername")
+        .addEventListener("click", function () {
+          const usernameInput = document.getElementById("usernameInput");
+          const username = usernameInput.value.trim();
+          if (username) {
+            alert("Username submitted " + username);
+          } else {
+            alert("Please enter a username.");
+          }
+        });
+
+      Array.from(document.getElementsByClassName("colorBtn")).forEach(function (
+        button
+      ) {
+        button.addEventListener("click", function () {
+          const buttonText = this.value;
+          alert("You clicked: " + buttonText);
+        });
+      });
+
+      Array.from(document.getElementsByClassName("hoverBox")).forEach(function (
+        box
+      ) {
+        box.addEventListener("mouseover", function () {
+          this.style.backgroundColor = "lightblue";
+        });
+      });
+
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            document.getElementById("clockDisplay").innerHTML = `Clock: ${hours}:${minutes}:${seconds}`;
+            setInterval(updateClock, 1000);
+        }
+        updateClock();
+
+        document.getElementById("validateBtn").addEventListener("click", function () {
+            const emailInput = document.getElementById("emailInput");
+            const email = emailInput.value.trim();
+            const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (emailPattern.test(email)) {
+                alert("Valid email address: " + email);
+            } else {
+                alert("Invalid email address. Please enter a valid email.");
+            }
+        });
+        
+    </script>
+  </body>
+</html>
