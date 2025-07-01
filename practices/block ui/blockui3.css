@@ -1,0 +1,131 @@
+:root {
+    --today-stat-text: "24,599";
+    --yesterday-stat-text: "15,699";
+    --total-stat-text: "1,24,599";
+    --current-income-stat-text: "$54,599";
+
+}
+
+body {
+  margin: 0;
+  padding: 40px;
+  background: #f2f6fa;
+  font-family: Arial, sans-serif;
+}
+
+.dashboard {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #fff;
+  width: 220px;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.card h4 {
+  margin: 0;
+  color: #777;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.stat {
+  font-size: 26px;
+  color: #44c0e2;
+  margin: 10px 0;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 60px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.initial-bar{
+    display: flex;
+    height: 60px;
+    align-items: flex-end;
+    border: solid 1px #000;
+}
+
+.bar {
+  width: 16px;
+}
+
+.labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #777;
+}
+
+.red {
+  background: #e74c3c;
+}
+.green {
+  background: #2ecc71;
+}
+.yellow {
+  background: #f1c40f;
+}
+.cyan {
+  background: #1abc9c;
+}
+.orange {
+  background: #e67e22;
+}
+
+.today-stat-text::before{
+  content: var(--today-stat-text);
+}
+.yesterday-stat-text::before{
+  content: var(--yesterday-stat-text);
+}
+.total-stat-text::before{
+  content: var(--total-stat-text);
+}
+.current-income-stat-text::before{
+  content: var(--current-income-stat-text);
+}
+
+/* Height classes */
+.h-30 {
+  height: 30%;
+}
+.h-35 {
+  height: 35%;
+}
+.h-40 {
+  height: 40%;
+}
+.h-50 {
+  height: 50%;
+}
+.h-55 {
+  height: 55%;
+}
+.h-60 {
+  height: 60%;
+}
+.h-65 {
+  height: 65%;
+}
+.h-70 {
+  height: 70%;
+}
+.h-75 {
+  height: 75%;
+}
+.h-80 {
+  height: 80%;
+}

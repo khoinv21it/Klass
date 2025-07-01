@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Media Stats</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        padding: 40px 20px;
+      }
+
+      .social-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card {
+        width: 200px;
+        height: 200px;
+        color: white;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-radius: 4px;
+        transition: transform 0.2s;
+      }
+
+      .card:hover {
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+
+      .card i {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .facebook {
+        background-color: #3b5998;
+      }
+      .twitter {
+        background-color: #00aced;
+      }
+      .google {
+        background-color: #dd4b39;
+      }
+      .pinterest {
+        background-color: #cb2027;
+      }
+
+      .card h3 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .card p {
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="social-container">
+      <div class="card facebook">
+        <i class="fab fa-facebook-f"></i>
+        <h3>Facebook</h3>
+        <p>5,00,000 Likes</p>
+      </div>
+      <div class="card twitter">
+        <i class="fab fa-twitter"></i>
+        <h3>Twitter</h3>
+        <p>40,000 Tweets</p>
+      </div>
+      <div class="card google">
+        <i class="fab fa-google-plus-g"></i>
+        <h3>Google +</h3>
+        <p>4,60,000 Plus</p>
+      </div>
+      <div class="card pinterest">
+        <i class="fab fa-pinterest-p"></i>
+        <h3>Pinterest</h3>
+        <p>34,000 Pins</p>
+      </div>
+    </div>
+  </body>
+</html>

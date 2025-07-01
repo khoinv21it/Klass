@@ -1,0 +1,207 @@
+:root {
+  --cover-img: url("https://hoanghamobile.com/tin-tuc/wp-content/uploads/2023/07/anh-bia-dep-10.jpg");
+  --avatar-img: url("https://www.vietnamworks.com/hrinsider/wp-content/uploads/2023/12/anh-den-ngau.jpeg");
+
+  /* Font sizes */
+  --font-title: 20px;
+  --font-subtitle: 14px;
+  --font-badge: 13px;
+
+  /* Font colors */
+  --text-main: #421c1c;
+  --text-sub: #777;
+
+  /* Backgrounds */
+  --bg-card: #fff;
+  --bg-body: #ecf0f3;
+  --bg-row: #f9f9f9;
+
+  /* Badge colors */
+  --color-red: #e74c3c;
+  --color-blue: #0eb3c2;
+  --color-green: #27ae60;
+  --color-yellow: #eaed0f;
+  --color-purple: #c03bd1;
+
+  /* Sizing */
+  --card-width: 500px;
+  --cover-height: 180px;
+  --avatar-size: 80px;
+  --avatar-border: 3px solid var(--bg-card);
+  --row-padding: 10px 15px;
+  --card-padding: 0 20px 20px;
+  --gap-row: 10px;
+
+  /* text */
+  --followers-text: "FOLLOWERS";
+  --followings-text: "FOLLOWING";
+  --messages-text: "MESSAGES";
+  --likes-text: "LIKES";
+  --comments-text: "COMMENTS";
+
+  /* number */
+  --followers-number: "1200";
+  --followings-number: "1200";
+  --messages-number: "1200";
+  --likes-number: "1200";
+  --comments-number: "1200";
+}
+
+body {
+  font-family: "Lato", sans-serif;
+  background: var(--bg-body);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: var(--bg-card);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: var(--card-width);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.cover-section {
+  background-image: var(--cover-img);
+  background-size: cover;
+  background-position: center;
+  height: var(--cover-height);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 30px;
+  gap: 15px;
+}
+
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: 50%;
+  background-image: var(--avatar-img);
+  background-size: cover;
+  background-position: center;
+  border: var(--avatar-border);
+  flex-shrink: 0;
+}
+
+.user-info {
+  color: var(--text-main);
+}
+
+.username {
+  font-size: var(--font-title);
+  margin: 0;
+}
+
+.user-title {
+  font-size: var(--font-subtitle);
+  margin: 5px 0 0;
+  color: var(--text-sub);
+}
+
+/* Info rows */
+.info-rows {
+  display: flex;
+  flex-direction: column;
+  padding: var(--card-padding);
+  gap: var(--gap-row);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-row);
+  padding: var(--row-padding);
+  /* border-radius: 5px; */
+}
+
+/* Text */
+.follow-text::before {
+  content: var(--followers-text);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.following-text::before {
+  content: var(--followings-text);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.messages-text::before {
+  content: var(--messages-text);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.likes-text::before {
+  content: var(--likes-text);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+.comments-text::before {
+  content: var(--comments-text);
+  font-weight: bold;
+  color: var(--text-main);
+}
+
+/* Numbers */
+.follow-number::before {
+  content: var(--followers-number);
+}
+
+.following-number::before {
+  content: var(--followings-number);
+}
+
+.messages-number::before {
+  content: var(--messages-number);
+}
+
+.likes-number::before {
+  content: var(--likes-number);
+}
+
+.comments-number::before {
+  content: var(--comments-number);
+}
+
+
+/* Badge styling */
+.follow-number,
+.following-number,
+.messages-number,
+.likes-number,
+.comments-number {
+  font-size: var(--font-badge);
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 12px;
+}
+
+.red {
+  background-color: var(--color-red);
+}
+.blue {
+  background-color: var(--color-blue);
+}
+.green {
+  background-color: var(--color-green);
+}
+.yellow {
+  background-color: var(--color-yellow);
+}
+.purple {
+  background-color: var(--color-purple);
+}

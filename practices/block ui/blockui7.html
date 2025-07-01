@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Development Process</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+
+      .process {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .step {
+        /* position: relative; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #ccc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 36px;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      .idea .circle {
+        background-color: #f44336;
+      }
+      .proto .circle {
+        background-color: #00bcd4;
+      }
+      .coding .circle {
+        background-color: #4caf50;
+      }
+      .testing .circle {
+        background-color: #ab47bc;
+      }
+
+      .arrow {
+        font-size: 24px;
+        color: #ccc;
+        margin: 0 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="process">
+      <div class="step idea">
+        <div class="circle"><i class="fas fa-lightbulb"></i></div>
+        <div>Idea</div>
+      </div>
+      <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+      <div class="step proto">
+        <div class="circle"><i class="fas fa-desktop"></i></div>
+        <div>Prototype</div>
+      </div>
+      <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+      <div class="step coding">
+        <div class="circle"><i class="fas fa-code"></i></div>
+        <div>Coding</div>
+      </div>
+      <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+      <div class="step testing">
+        <div class="circle"><i class="fas fa-check-square"></i></div>
+        <div>Testing</div>
+      </div>
+    </div>
+  </body>
+</html>
