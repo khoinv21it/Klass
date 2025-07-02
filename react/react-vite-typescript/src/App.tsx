@@ -1,15 +1,18 @@
 import "./App.css";
 // import styleK from './k.module.css'
 import { Filter, Globe, Phone, Search, Smile } from "lucide-react";
-import GetStartedButton from "./components/ComponentP1/GetStartedButton";
-import GetAppleButton from "./components/ComponentP1/GetAppleButton";
-import GetGoogleButton from "./components/ComponentP1/GetGoogleButton";
-import GetFacebookButton from "./components/ComponentP1/GetFacebookButton";
-import { SearchInput } from "./components/SearchInput";
-import { CardDashBoard } from "./components/CardDashBoard";
-import { CardPerson } from "./components/CardPerson";
-import CardNike from "./components/CardNike";
-import CardNotification from "./components/CardNotification";
+import GetStartedButton from "./components/Exercise01/GetStartedButton";
+import GetAppleButton from "./components/Exercise01/GetAppleButton";
+import GetGoogleButton from "./components/Exercise01/GetGoogleButton";
+import GetFacebookButton from "./components/Exercise01/GetFacebookButton";
+import { SearchInput } from "./components/Exercise02/SearchInput";
+import { CardDashBoard } from "./components/Exercise03/CardDashBoard";
+import { CardPerson } from "./components/Exercise05/CardPerson";
+import CardNike from "./components/Exercise06/CardNike";
+import CardNotification from "./components/Exercise06/CardNotification";
+import { CardScore } from "./components/Exercise03/CardScore";
+import { CardMU } from "./components/Exercise03/CardMU";
+import { CardInfo } from "./components/Exercise03/CardInfo";
 
 function App() {
   return (
@@ -22,7 +25,6 @@ function App() {
         {/* <h1 className={styleK.heading}>Hello React!</h1>
         <img height={160} width={160} src="images/xiaomi1.jpg" alt="" /> */}
       </div>
-      <hr />
       <div className="d">
         <SearchInput leftIcon={<Search />} />
         <SearchInput leftIcon={<Search />} placeholder="Search" />
@@ -50,6 +52,9 @@ function App() {
       </div>
 
       <div className="d">
+        <CardScore />
+        <CardMU />
+        <CardInfo />
         <CardDashBoard
           title="Dashboard"
           description="Business management service"

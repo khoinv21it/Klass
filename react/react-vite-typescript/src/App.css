@@ -4,9 +4,13 @@ h1 {
 
 .c {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    /* align-items: center; */
+    justify-content: center;
     align-items: center;
     background-color: rgb(107, 70, 70);
+    gap: 20px;
+    
 }
 .d {
     display: flex;

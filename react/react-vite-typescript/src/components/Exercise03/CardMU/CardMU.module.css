@@ -1,0 +1,21 @@
+.cardContainer{
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    align-items: center;
+    border-radius:20px ;
+    width: 320px;
+    height: 60px;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.img{
+    width: 48px;
+}
+.leftCol{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

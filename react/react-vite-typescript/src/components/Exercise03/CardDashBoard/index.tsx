@@ -27,7 +27,7 @@ export const CardDashBoard = ({
               {tag}
             </span>
           ))}
-          <MoreHorizontal size={18} />
+          <MoreHorizontal size={20} />
         </div>
       </div>
 
