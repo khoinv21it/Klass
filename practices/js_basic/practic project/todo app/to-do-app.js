@@ -86,3 +86,11 @@ addNote.addEventListener('click', () => {
   noteInput.value = '';
   div.querySelector('.delete-btn').onclick = () => div.remove();
 });
+
+const themeToggle = document.getElementById('themeToggle');
+themeToggle.addEventListener('click', () => {
+  document.body.classList.toggle('bg-gray-800');
+  document.body.classList.toggle('text-gray-100');
+  document.li.classList.toggle('bg-gray-800');
+  themeToggle.textContent = document.body.classList.contains('bg-gray-800') ? '☀️' : '🌙';
+});

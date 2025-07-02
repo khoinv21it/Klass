@@ -1,0 +1,47 @@
+.card {
+    background-color: white;
+  border-radius: 20px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 330px;
+  height: 90px;
+  gap: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.message {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+  color: black;
+}
+
+.divider {
+    width: 1px;
+    height: 30px;
+    background-color: #d0d4d9;
+  }
+
+  .notification {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon {
+    font-size: 24px;
+    color: black;
+  }
+  
+  .count {
+    background-color: black;
+    color: white;
+    border-radius: 999px;
+    padding: 7px 20px;
+    font-weight: bold;
+    font-size: 14px;
+  }

@@ -1,0 +1,26 @@
+button {
+    background-color: black;
+    border: none;
+    color: white;
+    width: 330px;
+    height: 60px;
+    text-align: left;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 0 16px;
+}
+
+.arrow {
+    vertical-align: middle;
+    vertical-align: middle;
+    margin-left: auto;
+    font-size: 20px;
+    color: white;
+}

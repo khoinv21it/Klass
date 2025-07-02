@@ -1,0 +1,76 @@
+.card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    width: 320px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: sans-serif;;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+}
+
+.tag {
+    font-size: 12px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 600;
+}
+
+.highlight {
+    background-color: #e5f9e7;
+    color: #2d8a4a;
+}
+
+.feed {
+    background-color: #fce8fc;
+    color: #a34cbf;
+}
+
+.title {
+    margin: 10px 0 4px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+}
+
+.description {
+    color: #94a3b8;
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.progressBar {
+    flex: 1;
+    height: 8px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background-color: #4ade80;
+    border-radius: 10px;
+}
+
+.percent {
+    font-size: 14px;
+    font-weight: 500;
+}

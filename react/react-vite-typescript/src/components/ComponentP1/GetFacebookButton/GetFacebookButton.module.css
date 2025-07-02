@@ -1,0 +1,27 @@
+.fbbtn {
+    background-color: white;
+    border: none;
+    color: black;
+    width: 330px;
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: solid 2px black;
+    padding: 0 16px;
+    position: relative; 
+}
+
+.facebook {
+    position: absolute;
+    left: 16px;
+    font-size: 20px;
+    color: black;
+}

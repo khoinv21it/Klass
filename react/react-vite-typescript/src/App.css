@@ -1,0 +1,20 @@
+h1 {
+    color: rgb(255, 0, 0);
+}
+
+.c {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(107, 70, 70);
+}
+.d {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    margin-top: 10px;
+    width: 400px;
+    height: 800px;
+    background-color: #E2E9EE;
+    border-radius: 15px;
+}
