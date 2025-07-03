@@ -1,18 +1,18 @@
 import "./App.css";
 // import styleK from './k.module.css'
 import { Filter, Globe, Phone, Search, Smile } from "lucide-react";
-import GetStartedButton from "./components/Exercise01/GetStartedButton";
-import GetAppleButton from "./components/Exercise01/GetAppleButton";
-import GetGoogleButton from "./components/Exercise01/GetGoogleButton";
-import GetFacebookButton from "./components/Exercise01/GetFacebookButton";
-import { SearchInput } from "./components/Exercise02/SearchInput";
-import { CardDashBoard } from "./components/Exercise03/CardDashBoard";
-import { CardPerson } from "./components/Exercise05/CardPerson";
-import CardNike from "./components/Exercise06/CardNike";
-import CardNotification from "./components/Exercise06/CardNotification";
-import { CardScore } from "./components/Exercise03/CardScore";
-import { CardMU } from "./components/Exercise03/CardMU";
-import { CardInfo } from "./components/Exercise03/CardInfo";
+import GetStartedButton from "./components/Day03/Exercise01/GetStartedButton";
+import GetAppleButton from "./components/Day03/Exercise01/GetAppleButton";
+import GetGoogleButton from "./components/Day03/Exercise01/GetGoogleButton";
+import GetFacebookButton from "./components/Day03/Exercise01/GetFacebookButton";
+import { SearchInput } from "./components/Day03/Exercise02/SearchInput";
+import { CardDashBoard } from "./components/Day03/Exercise03/CardDashBoard";
+import { CardPerson } from "./components/Day03/Exercise05/CardPerson";
+import CardNike from "./components/Day03/Exercise06";
+import CardNotification from "./components/Day03/Exercise06/CardNotification";
+import { CardScore } from "./components/Day03/Exercise03/CardScore";
+import { CardMU } from "./components/Day03/Exercise03/CardMU";
+import { CardInfo } from "./components/Day03/Exercise03/CardInfo";
 
 function App() {
   return (
