@@ -1,0 +1,65 @@
+.wrapper {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.tab_container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  max-width: 600px;
+  margin: 0 auto 1rem auto;
+}
+
+.tab_button {
+  padding: 10px 0;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Block style */
+.block .tab_button {
+  background-color: #f5f5f5;
+  border: none;
+}
+
+.block .tab_button.active {
+  background-color: #2ecc71;
+  color: white;
+}
+
+/* Underline style */
+.underline .tab_button {
+  background: none;
+  border: none;
+  position: relative;
+  color: #555;
+}
+
+.underline .tab_button.active {
+  color: #2ecc71;
+}
+
+.underline .tab_button.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 25%;
+  width: 50%;
+  height: 2px;
+  background-color: #2ecc71;
+}
+
+/* Content */
+.tab_content {
+  max-width: 700px;
+  margin: 0 auto;
+  padding-top: 1rem;
+}
+
+.tab_content p {
+  color: #444;
+  line-height: 1.6;
+  font-size: 16px;
+}

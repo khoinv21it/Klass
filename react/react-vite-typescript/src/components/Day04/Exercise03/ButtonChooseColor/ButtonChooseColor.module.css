@@ -1,0 +1,19 @@
+.color_selector {
+  display: flex;
+  gap: 10px;
+}
+
+.color_btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.color_btn.active {
+  border: 2px solid red;
+  color: red;
+  font-weight: bold;
+}
