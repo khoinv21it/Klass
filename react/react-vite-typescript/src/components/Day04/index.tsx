@@ -4,6 +4,7 @@ import ButtonChooseColor from "./Exercise03/ButtonChooseColor";
 import Rating from "./Exercise03/Rating";
 import SeenProduct from "./Exercise03/SeenProduct";
 import { LikeButton } from "./ExerciseHome/LikeButton";
+import SlideThumnail from "./ExerciseHome/SlideThumnail";
 import TabSwitcher from "./ExerciseHome/TabSwitcher";
 
 export default function Day04() {
@@ -48,6 +49,8 @@ export default function Day04() {
 
       <Rating />
       {/* <SeenProduct ImageUrl="images/day04/iphone-16-pro-titan-trang.png" Name="vivo Y18 8GB/128GB" Price="4.410.000"/> */}
+
+      <SlideThumnail />
 
       <TabSwitcher type="block" />
       <TabSwitcher type="underline" />
