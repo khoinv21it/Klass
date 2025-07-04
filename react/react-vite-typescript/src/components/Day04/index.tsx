@@ -9,7 +9,9 @@ import TabSwitcher from "./ExerciseHome/TabSwitcher";
 
 export default function Day04() {
   return (
-    <section>
+    <section
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       {/* <LatestNews /> */}
 
       {/* <div style={{ display: "flex", gap: "30px" }}>
@@ -45,12 +47,16 @@ export default function Day04() {
 
       {/* <ButtonChooseColor /> */}
 
-      <LikeButton />
+      <div style={{ alignSelf: "flex-start" }}>
+        <LikeButton />
 
-      <Rating />
+        <Rating />
+      </div>
+
       {/* <SeenProduct ImageUrl="images/day04/iphone-16-pro-titan-trang.png" Name="vivo Y18 8GB/128GB" Price="4.410.000"/> */}
-
-      <SlideThumnail />
+      <div style={{ width: "700px" }}>
+        <SlideThumnail />
+      </div>
 
       <TabSwitcher type="block" />
       <TabSwitcher type="underline" />

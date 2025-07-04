@@ -15,8 +15,10 @@ export default function Rating({ stars = 0 }: Props) {
   const handleClick = (index: number) => {
     if (rating === index) {
       setRating(0);
+      // setLabel('');
     } else {
       setRating(index); 
+      // setLabel(descriptions[index - 1]);
     }
   };
 
