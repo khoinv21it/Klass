@@ -41,11 +41,11 @@ export default function WheatherDisplay({}: Props) {
           wind: wheatherData.current.wind_kph,
         });
 
-        // Get next 4 hours (including now)
+        // Get next hours (including now)
         const nowHour = new Date(wheatherData.location.localtime).getHours();
         const hours = forecastData.forecast.forecastday[0].hour;
         const hourlyItems = [];
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < hours.length; i++) {
           const h = (nowHour + i) % 24;
           const hourData = hours[h];
           hourlyItems.push({
