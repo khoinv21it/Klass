@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router";
+import LogoNavBar from "./LogoNavBar";
 
 const ItemNavBar = [
   { label: "Patients", path: "/" },
@@ -16,6 +17,8 @@ type Props = {};
 export default function NavBar({}: Props) {
   return (
     <div className="w-64 bg-zinc-100 text-gray-800 min-h-screen p-6 border-r border-gray-200 shadow-sm">
+      <LogoNavBar />
+      <hr className="text-gray-400"/>
       <h2 className="text-2xl font-bold mb-8 tracking-tight text-gray-700">
         Dashboard
       </h2>
