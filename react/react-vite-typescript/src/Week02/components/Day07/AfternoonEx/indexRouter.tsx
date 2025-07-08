@@ -18,8 +18,6 @@ export default function AfternoonEx({}: Props) {
         <Route index element={<HomePage />} />
         <Route path="product" element={<ProductPage />}>
           <Route path="category/:id" element={<ProductContainer />} />
-          {/* phân trang */}
-          
         </Route>
         <Route path="blog" element={<BlogPage/>} />
         <Route path="*" element={<div>404 Not Found</div>} />
