@@ -16,7 +16,7 @@ export default function AppRouter({}: Props) {
         <Route path='afternoon/form01' element={<Form01/>}/>
         <Route path='afternoon/form02' element={<Form02/>} />
         <Route path='afternoon/form03' element={<Form03/>} />
-        <Route path='afternoon/homework' element={<Homework/>} />
+        <Route path='homework' element={<Homework/>} />
       </Route>
 
       <Route path="/about" element={<div>About</div>} />

@@ -17,7 +17,7 @@ export default function lesson09({}: Props) {
           <NavLink to="/lesson09/afternoon/form03">Form03</NavLink>
         </div>
         <div className="p-2 bg-indigo-500/80 hover:bg-indigo-500 hover:font-bold rounded-lg">
-          <NavLink to="/lesson09/afternoon/homework">Homwork</NavLink>
+          <NavLink to="/lesson09/homework">Homwork</NavLink>
         </div>
       </div>
     </div>
