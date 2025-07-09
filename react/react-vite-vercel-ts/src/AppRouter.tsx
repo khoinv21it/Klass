@@ -5,12 +5,14 @@ import Form01 from './Week02/Lesson09/components/Form01'
 import Form02 from './Week02/Lesson09/components/Form02'
 import Form03 from './Week02/Lesson09/components/Form03'
 import Homework from './Week02/Lesson09/components/Homework'
+import VercelDirect from './Week02/VercelDirect'
 
 type Props = {}
 
 export default function AppRouter({}: Props) {
   return (
     <Routes>
+      <Route path='/' element = {<VercelDirect/>}/>
       <Route path="/lesson09" element={<Lesson09 />}>
         <Route index element={<div>Direct page here</div>} />
         <Route path='afternoon/form01' element={<Form01/>}/>
