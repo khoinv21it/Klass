@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/lesson10/:match*", "destination": "/index.html" }
+  ]
+}

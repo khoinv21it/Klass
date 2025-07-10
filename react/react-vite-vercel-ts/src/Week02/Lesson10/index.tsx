@@ -52,6 +52,20 @@ export default function TaskManagement({}: Props) {
         </header>
 
         <nav className="mb-6 flex flex-wrap items-center justify-center gap-4">
+          {!user && (
+            <NavLink
+              className={({ isActive }) =>
+                `px-3 py-1 rounded transition ${
+                  isActive
+                    ? "bg-blue-600 text-white font-bold"
+                    : "text-blue-600 hover:bg-blue-100"
+                }`
+              }
+              to="/lesson10/login"
+            >
+              Login{" "}
+            </NavLink>
+          )}
           <NavLink
             className={({ isActive }) =>
               `px-3 py-1 rounded transition ${
@@ -113,7 +127,7 @@ export default function TaskManagement({}: Props) {
               {user && (
                 <Route path="update-task/:id" element={<UpdateTasksPage />} />
               )}
-              
+
               <Route path="*" element={<AccessDeniedPage />} />
             </Route>
           </Routes>
