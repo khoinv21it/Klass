@@ -35,17 +35,6 @@ export default function TaskManagement({}: Props) {
     window.location.href = "/lesson10";
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-full max-w-md">
-          <Skeleton height={40} className="mb-6" />
-          <Skeleton count={5} height={32} className="mb-2" />
-        </div>
-      </div>
-    );
-  }
-
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <div className="min-h-screen bg-gray-50">
