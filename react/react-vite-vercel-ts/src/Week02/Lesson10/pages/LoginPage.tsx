@@ -68,18 +68,38 @@ export default function LoginPage() {
     window.location.href = "/lesson10/tasks"; // Redirect to tasks page
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-white p-8 rounded-xl shadow-md w-full max-w-sm space-y-6"
+        className="bg-white/90 backdrop-blur-md p-8 rounded-2xl shadow-2xl w-full max-w-sm space-y-7 border border-blue-100"
       >
-        <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">
-          Login
-        </h2>
+        <div className="flex flex-col items-center mb-2">
+          <div className="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-2 shadow">
+            <svg
+              className="w-8 h-8 text-blue-500"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth={2}
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+              />
+            </svg>
+          </div>
+          <h2 className="text-3xl font-extrabold text-blue-700 mb-1 tracking-tight">
+            Sign In
+          </h2>
+          <p className="text-blue-500 text-sm">
+            Welcome back! Please login to your account.
+          </p>
+        </div>
         <div>
           <label
             htmlFor="username"
-            className="block text-gray-700 font-medium mb-1"
+            className="block text-gray-700 font-semibold mb-1"
           >
             Email
           </label>
@@ -89,12 +109,12 @@ export default function LoginPage() {
             id="username"
             name="username"
             placeholder="Enter your email"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-              errors.username ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 ${
+              errors.username ? "border-red-500" : "border-blue-200"
             }`}
           />
           {errors.username && (
-            <p className="text-red-500 text-sm mt-1">
+            <p className="text-red-500 text-xs mt-1">
               {errors.username.message}
             </p>
           )}
@@ -102,7 +122,7 @@ export default function LoginPage() {
         <div>
           <label
             htmlFor="password"
-            className="block text-gray-700 font-medium mb-1"
+            className="block text-gray-700 font-semibold mb-1"
           >
             Password
           </label>
@@ -112,19 +132,19 @@ export default function LoginPage() {
             id="password"
             name="password"
             placeholder="Enter your password"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 ${
-              errors.password ? "border-red-500" : "border-gray-300"
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-blue-50 ${
+              errors.password ? "border-red-500" : "border-blue-200"
             }`}
           />
           {errors.password && (
-            <p className="text-red-500 text-sm mt-1">
+            <p className="text-red-500 text-xs mt-1">
               {errors.password.message}
             </p>
           )}
         </div>
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+          className="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-2 rounded-lg font-bold shadow hover:from-blue-600 hover:to-blue-800 transition-all text-lg tracking-wide"
         >
           Login
         </button>

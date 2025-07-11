@@ -2,19 +2,18 @@ import { useEffect, useState } from "react";
 import { getTasks } from "../services";
 import type { Task } from "../types";
 import { Link } from "react-router";
+import { Table, Tag, Button } from "antd";
 import SearchTasks from "../components/SearchTask";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {};
 
 export default function OurTasksPage({}: Props) {
-  const [tasks, setTasks] = useState([]);
-  const [loading, setLoading] = useState(true); // Thêm state loading
-
+  const [tasks, setTasks] = useState<Task[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filters, setFilters] = useState<any>({
     status: "",
     priority: "",
+    title: "",
   });
 
   useEffect(() => {
@@ -22,6 +21,7 @@ export default function OurTasksPage({}: Props) {
       setLoading(true);
       try {
         const tasks = await getTasks();
+        // console.log("Fetched tasks:", tasks);
         setTasks(tasks);
       } catch (error) {
         console.error("Error fetching tasks:", error);
@@ -32,128 +32,100 @@ export default function OurTasksPage({}: Props) {
     fetchTasks();
   }, []);
 
-  const handleOnSearch = (filters: { status?: string; priority?: string }) => {
+  const handleOnSearch = (filters: {
+    status?: string;
+    priority?: string;
+    title?: string;
+  }) => {
     setFilters(filters);
   };
+
   const filteredTasks = tasks.filter((task: Task) => {
     let matches = true;
-
-    if (filters.status && task.status !== filters.status) {
+    if (filters.status && task.status !== filters.status) matches = false;
+    if (filters.priority && task.priority !== filters.priority) matches = false;
+    if (
+      filters.title &&
+      !task.title.toLowerCase().includes(filters.title.toLowerCase())
+    )
       matches = false;
-    }
-
-    if (filters.priority && task.priority !== filters.priority) {
-      matches = false;
-    }
-
     return matches;
   });
 
+  const columns = [
+    { title: "ID", dataIndex: "id", key: "id" },
+    { title: "Title", dataIndex: "title", key: "title" },
+    { title: "Description", dataIndex: "description", key: "description" },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status: string) => (
+        <Tag
+          color={
+            status === "to_do"
+              ? "default"
+              : status === "in_progress"
+              ? "gold"
+              : status === "done"
+              ? "green"
+              : "red"
+          }
+        >
+          {status ? status.replace("_", " ") : "No status"}
+        </Tag>
+      ),
+    },
+    {
+      title: "Priority",
+      dataIndex: "priority",
+      key: "priority",
+      render: (priority: string) => (
+        <Tag
+          color={
+            priority === "low"
+              ? "blue"
+              : priority === "medium"
+              ? "orange"
+              : priority === "high"
+              ? "red"
+              : "default"
+          }
+        >
+          {priority ? priority : "No priority"}
+        </Tag>
+      ),
+    },
+    {
+      title: "Due Date",
+      dataIndex: "due_date",
+      key: "due_date",
+      render: (date: string) =>
+        date ? new Date(date).toLocaleDateString() : "",
+    },
+    { title: "Assignee", dataIndex: "assignee_id", key: "assignee_id" },
+    {
+      title: "Actions",
+      key: "actions",
+      render: (_: any, record: Task) => (
+        <Link to={`/lesson10/update-task/${record.id}`}>
+          <Button type="link">Edit</Button>
+        </Link>
+      ),
+    },
+  ];
+
   return (
-    <div className="p-4">
+    <div style={{ padding: 24 }}>
       <SearchTasks onSearch={handleOnSearch} />
-      <h2 className="text-2xl font-bold text-blue-600 mb-4">All Tasks</h2>
-      <div className="overflow-x-auto rounded-lg shadow">
-        <table className="min-w-full divide-y divide-gray-200 bg-white">
-          <thead className="bg-blue-50">
-            <tr>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                ID
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Title
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Description
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Status
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Priority
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Due Date
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Assignee
-              </th>
-              <th className="px-4 py-2 text-left text-xs font-semibold text-gray-600 uppercase">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-100">
-            {loading
-              ? Array.from({ length: 5 }).map((_, idx) => (
-                  <tr key={idx}>
-                    {Array.from({ length: 8 }).map((_, colIdx) => (
-                      <td className="px-4 py-2" key={colIdx}>
-                        <Skeleton height={24} />
-                      </td>
-                    ))}
-                  </tr>
-                ))
-              : filteredTasks.map((task: Task) => (
-                  <tr key={task.id} className="hover:bg-blue-50 transition">
-                    <td className="px-4 py-2">{task.id}</td>
-                    <td className="px-4 py-2">{task.title}</td>
-                    <td className="px-4 py-2">{task.description}</td>
-                    <td className="px-4 py-2">
-                      <span
-                        className={
-                          "px-2 py-1 rounded text-xs font-semibold " +
-                          (task.status === "to_do"
-                            ? "bg-gray-200 text-gray-800"
-                            : task.status === "in_progress"
-                            ? "bg-yellow-200 text-yellow-800"
-                            : task.status === "done"
-                            ? "bg-green-200 text-green-800"
-                            : "bg-red-100 text-red-800")
-                        }
-                      >
-                        {task.status
-                          ? task.status.replace("_", " ")
-                          : "No status"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2">
-                      <span
-                        className={
-                          "px-2 py-1 rounded text-xs font-semibold " +
-                          (task.priority === "low"
-                            ? "bg-blue-100 text-blue-800"
-                            : task.priority === "medium"
-                            ? "bg-orange-200 text-orange-800"
-                            : task.priority === "high"
-                            ? "bg-red-200 text-red-800"
-                            : "bg-gray-100 text-gray-800")
-                        }
-                      >
-                        {task.priority ? task.priority : "No priority"}
-                      </span>
-                    </td>
-                    <td className="px-4 py-2">
-                      {task.due_date
-                        ? new Date(task.due_date).toLocaleDateString()
-                        : ""}
-                    </td>
-                    <td className="px-4 py-2">
-                      {task.assignee_id || "Unassigned"}
-                    </td>
-                    <td className="px-4 py-2">
-                      <Link
-                        to={`/lesson10/update-task/${task.id}`}
-                        className="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded hover:bg-blue-200 font-medium transition"
-                      >
-                        Edit
-                      </Link>
-                    </td>
-                  </tr>
-                ))}
-          </tbody>
-        </table>
-      </div>
+      <Table
+        columns={columns}
+        dataSource={filteredTasks}
+        loading={loading}
+        rowKey="id"
+        bordered
+        pagination={{ pageSize: 8 }}
+      />
     </div>
   );
 }

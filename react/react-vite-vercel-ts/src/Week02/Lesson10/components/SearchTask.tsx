@@ -1,8 +1,10 @@
 import { useForm } from "react-hook-form";
+import { FaSearch } from "react-icons/fa";
 
 interface IFormInput {
   status: string;
   priority: string;
+  title?: string;
 }
 
 type Props = {
@@ -10,7 +12,6 @@ type Props = {
 };
 
 export default function SearchTasks({ onSearch }: Props) {
-  // react form hook
   const {
     register,
     handleSubmit,
@@ -30,15 +31,15 @@ export default function SearchTasks({ onSearch }: Props) {
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-8">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-wrap items-end gap-4 bg-white p-4 rounded-lg shadow"
+        className="flex flex-wrap items-end gap-6 bg-gradient-to-r from-blue-50 to-blue-100 p-6 rounded-2xl shadow-lg border border-blue-200"
       >
-        <div>
+        <div className="flex flex-col">
           <label
             htmlFor="status"
-            className="block text-gray-700 font-medium mb-1"
+            className="text-sm font-semibold text-blue-700 mb-2"
           >
             Status
           </label>
@@ -46,7 +47,7 @@ export default function SearchTasks({ onSearch }: Props) {
             {...register("status")}
             id="status"
             name="status"
-            className="w-40 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-44 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white"
           >
             <option value="">All Statuses</option>
             <option value="to_do">To Do</option>
@@ -58,10 +59,10 @@ export default function SearchTasks({ onSearch }: Props) {
           )}
         </div>
 
-        <div>
+        <div className="flex flex-col">
           <label
             htmlFor="priority"
-            className="block text-gray-700 font-medium mb-1"
+            className="text-sm font-semibold text-blue-700 mb-2"
           >
             Priority
           </label>
@@ -69,7 +70,7 @@ export default function SearchTasks({ onSearch }: Props) {
             {...register("priority")}
             id="priority"
             name="priority"
-            className="w-40 px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+            className="w-44 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white"
           >
             <option value="">All Priorities</option>
             <option value="low">Low</option>
@@ -83,11 +84,29 @@ export default function SearchTasks({ onSearch }: Props) {
           )}
         </div>
 
+        <div className="flex flex-col">
+          <label
+            htmlFor="title"
+            className="text-sm font-semibold text-blue-700 mb-2"
+          >
+            Task Name
+          </label>
+          <input
+            {...register("title")}
+            id="title"
+            name="title"
+            type="text"
+            placeholder="Search by task name"
+            className="w-44 px-3 py-2 border border-blue-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 bg-white"
+          />
+        </div>
+
         <div>
           <button
             type="submit"
-            className="bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition"
+            className="flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg font-semibold hover:bg-blue-700 transition shadow"
           >
+            <FaSearch className="text-white text-lg" />
             Search
           </button>
         </div>

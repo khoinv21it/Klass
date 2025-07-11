@@ -35,6 +35,17 @@ export default function TaskManagement({}: Props) {
     window.location.href = "/lesson10";
   };
 
+  // if (loading) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+  //       <div className="w-full max-w-md">
+  //         <Skeleton height={40} className="mb-6" />
+  //         <Skeleton count={5} height={32} className="mb-2" />
+  //       </div>
+  //     </div>
+  //   );
+  // }
+
   return (
     <AuthContext.Provider value={{ user, setUser }}>
       <div className="min-h-screen bg-gray-50">
@@ -52,20 +63,18 @@ export default function TaskManagement({}: Props) {
         </header>
 
         <nav className="mb-6 flex flex-wrap items-center justify-center gap-4">
-          {!user && (
-            <NavLink
-              className={({ isActive }) =>
-                `px-3 py-1 rounded transition ${
-                  isActive
-                    ? "bg-blue-600 text-white font-bold"
-                    : "text-blue-600 hover:bg-blue-100"
-                }`
-              }
-              to="/lesson10/login"
-            >
-              Login{" "}
-            </NavLink>
-          )}
+          { !user && <NavLink
+            className={({ isActive }) =>
+              `px-3 py-1 rounded transition ${
+                isActive
+                  ? "bg-blue-600 text-white font-bold"
+                  : "text-blue-600 hover:bg-blue-100"
+              }`
+            }
+            to="/lesson10/login"
+          >
+            Login{" "}
+          </NavLink>}
           <NavLink
             className={({ isActive }) =>
               `px-3 py-1 rounded transition ${
