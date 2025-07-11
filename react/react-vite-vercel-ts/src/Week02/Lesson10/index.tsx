@@ -52,7 +52,7 @@ export default function TaskManagement({}: Props) {
         <header className="bg-blue-600 py-4 mb-6 shadow">
           <div className="container mx-auto flex flex-col sm:flex-row items-center justify-between px-4">
             <h1 className="text-2xl font-bold text-white">
-              Tasks Management Guidelines
+              Tasks Management
             </h1>
             {user && (
               <p className="text-white mt-2 sm:mt-0">
