@@ -48,7 +48,7 @@ export default function BuyerForm() {
   };
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+      <h2 className="text-2xl font-bold text-gray-600 mb-6 text-center">
         Buyer Information
       </h2>
       <form onSubmit={handleSubmit(onsubmit)} className="space-y-4">

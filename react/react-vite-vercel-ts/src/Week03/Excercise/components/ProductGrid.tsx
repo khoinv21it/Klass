@@ -25,7 +25,7 @@ export const ProductGrid: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center">
+      <h2 className="text-3xl font-bold text-gray-600 mb-8 text-center">
         Danh Sách Sản Phẩm
       </h2>
 
@@ -46,7 +46,7 @@ export const ProductGrid: React.FC = () => {
 
             <button
               onClick={() => handleAddToCart(product)}
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 font-medium"
+              className="w-full bg-linear-to-r from-cyan-500 to-blue-500 text-white py-2 px-4 rounded-md hover:bg-linear-to-t from-sky-500 to-indigo-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition duration-200 font-medium"
             >
               Add to Cart <IoIosAddCircle size={24} className="inline-block ml-2" />
             </button>

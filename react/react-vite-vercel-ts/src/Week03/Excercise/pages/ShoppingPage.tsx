@@ -15,11 +15,11 @@ function ShoppingHeader() {
 
   return (
     <div className="flex justify-between items-center mb-8">
-      <h1 className="text-4xl font-bold text-gray-800">Shopping Cart</h1>
+      <h1 className="text-4xl font-bold text-gray-600">Shopping Cart</h1>
 
       <button
         onClick={handleCartClick}
-        className="relative p-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg"
+        className="relative p-3 bg-linear-to-bl from-violet-500 to-fuchsia-500 text-white rounded-full hover:bg-linear-65 from-purple-500 to-pink-500 transition-colors duration-200 shadow-lg"
       >
         <BsCart2 size={24} />
         {getItemCount() > 0 && (

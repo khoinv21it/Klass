@@ -18,13 +18,13 @@ export default function CartPage({}: Props) {
         <div className="mb-4 flex justify-between items-center">
           <button
             onClick={handleBackClick}
-            className="flex items-center text-blue-600 hover:text-blue-800 transition-colors duration-200 gap-2"
+            className="flex items-center text-sky-700 hover:text-sky-500 transition-colors duration-200 gap-2"
           >
             <FaArrowCircleLeft size={28} className="mr-2" />
             <span className="text-2xl font-medium">Quay lại</span>
           </button>
         </div>
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-8">
+        <h1 className="text-4xl font-bold text-center text-gray-600 mb-8">
           Giỏ Hàng & Thông Tin Mua Hàng
         </h1>
 
