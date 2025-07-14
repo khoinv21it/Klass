@@ -9,7 +9,7 @@ export default function CartPage({}: Props) {
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    navigate("/test");
+    navigate("/exam");
   };
 
   return (

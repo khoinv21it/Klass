@@ -18,7 +18,7 @@ function App() {
         {/* Render Lesson10 app */}
         <Route path="/lesson10/*" element={<TaskManagement />} />
 
-        <Route path="/test/*" element={<ExerciseRoute />} />
+        <Route path="/exam/*" element={<ExerciseRoute />} />
       </Routes>
     </BrowserRouter>
   );
