@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface Product {
   id: number;
@@ -38,9 +39,11 @@ export default async function ProductsPage() {
                 key={product.id}
                 className="bg-white rounded-2xl shadow-lg p-6 flex flex-col hover:shadow-2xl transition-all"
               >
-                <img
+                <Image
                   src={imgSrc}
                   alt={product.title}
+                  width={400}
+                  height={192}
                   className="w-full h-48 object-cover rounded-xl mb-4 border"
                 />
                 <h2 className="text-xl font-bold mb-2 text-blue-700 truncate">
