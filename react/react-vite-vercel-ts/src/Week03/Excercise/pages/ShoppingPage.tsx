@@ -19,7 +19,7 @@ function ShoppingHeader() {
 
       <button
         onClick={handleCartClick}
-        className="relative p-3 bg-linear-to-bl from-violet-500 to-fuchsia-500 text-white rounded-full hover:bg-linear-65 from-purple-500 to-pink-500 transition-colors duration-200 shadow-lg"
+        className="relative p-3 bg-linear-to-bl from-violet-500 to-fuchsia-500 text-white rounded-full hover:bg-linear-65 from-purple-500 to-fuchsia-500 transition-colors duration-200 shadow-lg"
       >
         <BsCart2 size={24} />
         {getItemCount() > 0 && (
