@@ -45,7 +45,7 @@ function ProductList({ products }: { products: Product[] }) {
           <p className="text-xl font-bold mt-2">${product.price}</p>
           <a
             href={`/lesson14/product-detail/${product.id}`}
-            className="block mt-3 text-center bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 transition"
+            className="block mt-3 text-center bg-blue-300/20 text-blue-500 rounded px-4 py-2 hover:bg-blue-400/30 transition"
           >
             Xem chi tiết
           </a>
