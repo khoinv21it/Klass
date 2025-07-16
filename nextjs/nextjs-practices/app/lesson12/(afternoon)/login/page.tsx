@@ -3,6 +3,7 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { login } from "../services";
 
 interface IFormInput {
   username: string;
@@ -39,39 +40,18 @@ export default function LoginPage() {
   });
 
   const onSubmit: SubmitHandler<IFormInput> = async (data) => {
-    try {
-      const response = await fetch("https://server.aptech.io/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          // KHÔNG truyền Authorization ở đây!
-        },
-        body: JSON.stringify({
-          username: data.username,
-          password: data.password,
-        }),
-      });
-      if (!response.ok) {
-        throw new Error("Login failed");
-      }
-      const result = await response.json();
-      console.log("Login result:", result);
-
-      const authenticatedUser = {
-        id: result.loggedInUser.id,
-        email: result.loggedInUser.email,
-        access_token: result.access_token,
-      };
-
-      // save user info to localStorage
-      localStorage.setItem("user", JSON.stringify(authenticatedUser));
-      // save access token to localStorage
-      localStorage.setItem("access_token", result.access_token);
-      window.location.href = "/lesson12";
-    } catch (err) {
-      alert("Login failed!");
-      console.error(err);
-    }
+    // Call API to authenticate user
+    const result = await login(data.username, data.password);
+    const authenticatedUser = {
+      id: result.loggedInUser.id,
+      email: result.loggedInUser.email,
+      access_token: result.access_token,
+    };
+    // save user info to localStorage
+    localStorage.setItem("user", JSON.stringify(authenticatedUser));
+    // save access token to localStorage
+    localStorage.setItem("access_token", result.access_token);
+    window.location.href = "/lesson12"; // Redirect to tasks page
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-100 via-blue-200 to-blue-300">
