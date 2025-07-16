@@ -32,15 +32,17 @@ function ProductList({ products }: { products: Product[] }) {
       {products.map((product) => (
         <div
           key={product.id}
-          className="border p-4 rounded-lg shadow hover:shadow-lg transition"
+          className="border p-4 rounded-lg shadow hover:shadow-lg transition flex flex-col justify-between"
         >
-          <Image
-            src={product.images[0]}
-            alt={product.title}
-            width={200}
-            height={200}
-            className="w-full h-auto object-cover mb-2"
-          />
+          <div className="aspect-square relative">
+            <Image
+              src={product.images[0]}
+              alt={product.title}
+              width={200}
+              height={200}
+              className="w-full h-auto object-cover mb-2"
+            />
+          </div>
           <h3 className="text-lg font-semibold">{product.title}</h3>
           <p className="text-xl font-bold mt-2">${product.price}</p>
           <a
