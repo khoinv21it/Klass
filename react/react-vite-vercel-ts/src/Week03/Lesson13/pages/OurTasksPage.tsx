@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import type { Task } from "../types";
 import { Link, useNavigate } from "react-router";
 import { Table, Tag, Button } from "antd";
+import { AuthBtn } from "../components/AuthBtn";
 import SearchTasks from "../components/SearchTask";
 import { useAuthStore } from "../useAuthStore";
 import { apiClient } from "../libraries/api-client";
@@ -113,9 +114,11 @@ export default function OurTasksPage() {
       title: "Actions",
       key: "actions",
       render: (_: any, record: Task) => (
-        <Link to={`/lesson13/update-task/${record.id}`}>
-          <Button type="link">Edit</Button>
-        </Link>
+        <AuthBtn>
+          <Link to={`/lesson13/update-task/${record.id}`}>
+            <Button type="link">Edit</Button>
+          </Link>
+        </AuthBtn>
       ),
     },
   ];
