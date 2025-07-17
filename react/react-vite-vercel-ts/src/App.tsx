@@ -5,6 +5,7 @@ import Route09 from "./Week02/Lesson09/Route09";
 import TaskManagement from "./Week02/Lesson10";
 import VercelDirect from "./Week02/VercelDirect";
 import ExerciseRoute from "./Week03/Excercise/ExerciseRoute";
+import Lesson13 from "./Week03/Lesson13";
 
 function App() {
   return (
@@ -17,6 +18,9 @@ function App() {
 
         {/* Render Lesson10 app */}
         <Route path="/lesson10/*" element={<TaskManagement />} />
+
+        {/* Render Lesson13 app */}
+        <Route path="/lesson13/*" element={<Lesson13 />} />
 
         <Route path="/exam/*" element={<ExerciseRoute />} />
       </Routes>
