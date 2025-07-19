@@ -1,18 +1,20 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import Axios, { type InternalAxiosRequestConfig } from 'axios';
+import Axios, { type InternalAxiosRequestConfig } from "axios";
 
-const URL = 'https://server.aptech.io';
+const URL = "https://server.aptech.io";
 
 const apiClient = Axios.create({
   baseURL: URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
 });
 
 apiClient.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const authStorage = localStorage.getItem('auth-storage') ? JSON.parse(localStorage.getItem('auth-storage')!) : null;
+    const authStorage = localStorage.getItem("auth-storage")
+      ? JSON.parse(localStorage.getItem("auth-storage")!)
+      : null;
 
     const access_token = authStorage?.state?.access_token;
 
@@ -24,7 +26,7 @@ apiClient.interceptors.request.use(
       config.headers.Authorization = `Bearer ${access_token}`;
     }
 
-    config.headers.Accept = 'application/json';
+    config.headers.Accept = "application/json";
 
     return config;
   },
@@ -35,12 +37,14 @@ apiClient.interceptors.request.use(
 
 const refreshToken = async () => {
   try {
-    const storage = localStorage.getItem('auth-storage') ? JSON.parse(localStorage.getItem('auth-storage')!) : null;
+    const storage = localStorage.getItem("auth-storage")
+      ? JSON.parse(localStorage.getItem("auth-storage")!)
+      : null;
 
     const refresh_token = storage?.state?.refresh_token;
 
     if (!refresh_token) {
-      console.error('No refresh token available');
+      console.error("No refresh token available");
       return null;
     }
 
@@ -48,19 +52,21 @@ const refreshToken = async () => {
     const refreshApiClient = Axios.create({
       baseURL: URL,
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     });
 
-    const response: any = await refreshApiClient.post('/auth/refresh-token', { refresh_token });
+    const response: any = await refreshApiClient.post("/auth/refresh-token", {
+      refresh_token,
+    });
 
     if (!response || !response.data || !response.data.access_token) {
-      console.error('Invalid refresh token response');
+      console.error("Invalid refresh token response");
       return null;
     }
 
     localStorage.setItem(
-      'auth-storage',
+      "auth-storage",
       JSON.stringify({
         state: {
           ...storage.state,
@@ -72,11 +78,11 @@ const refreshToken = async () => {
 
     return response.data.access_token;
   } catch (error: any) {
-    console.error('Failed to refresh token:', error);
+    console.error("Failed to refresh token:", error);
     // If refresh token is invalid (401/403), clear storage and redirect
     if (error.response?.status === 401 || error.response?.status === 403) {
-      localStorage.removeItem('auth-storage');
-      window.location.href = '/lesson13/login';
+      localStorage.removeItem("auth-storage");
+      window.location.href = "/lesson13/login";
     }
     return null;
   }
@@ -84,7 +90,10 @@ const refreshToken = async () => {
 
 // Flag to prevent multiple refresh attempts simultaneously
 let isRefreshing = false;
-let failedQueue: Array<{ resolve: (value: any) => void; reject: (reason?: any) => void }> = [];
+let failedQueue: Array<{
+  resolve: (value: any) => void;
+  reject: (reason?: any) => void;
+}> = [];
 
 const processQueue = (error: any, token: string | null = null) => {
   failedQueue.forEach(({ resolve, reject }) => {
@@ -106,24 +115,27 @@ apiClient.interceptors.response.use(
     const originalRequest = error.config;
 
     // Check if this is a login request - if so, don't redirect automatically
-    if (originalRequest.url === '/auth/login') {
+    if (originalRequest.url === "/auth/login") {
       return Promise.reject(error);
     }
 
     // Check if this is a refresh token request - if so, don't retry
-    if (originalRequest.url === '/auth/refresh-token') {
+    if (originalRequest.url === "/auth/refresh-token") {
       return Promise.reject(error);
     }
 
     // Check if it's an auth error and we haven't already retried
-    if ((error.response?.status === 401 || error.response?.status === 403) && !originalRequest._retry) {
+    if (
+      (error.response?.status === 401 || error.response?.status === 403) &&
+      !originalRequest._retry
+    ) {
       if (isRefreshing) {
         // If already refreshing, queue the request
         return new Promise((resolve, reject) => {
           failedQueue.push({ resolve, reject });
         })
           .then((token) => {
-            originalRequest.headers['Authorization'] = `Bearer ${token}`;
+            originalRequest.headers["Authorization"] = `Bearer ${token}`;
             return apiClient(originalRequest);
           })
           .catch((err) => {
@@ -139,8 +151,10 @@ apiClient.interceptors.response.use(
 
         if (newAccessToken) {
           // Update the authorization header and retry the request
-          apiClient.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`;
-          originalRequest.headers['Authorization'] = `Bearer ${newAccessToken}`;
+          apiClient.defaults.headers.common[
+            "Authorization"
+          ] = `Bearer ${newAccessToken}`;
+          originalRequest.headers["Authorization"] = `Bearer ${newAccessToken}`;
 
           // Process queued requests
           processQueue(null, newAccessToken);
@@ -149,16 +163,16 @@ apiClient.interceptors.response.use(
         } else {
           // If refresh failed, process queue with error and redirect to login
           processQueue(error, null);
-          console.error('Unable to refresh token, redirecting to login');
-          localStorage.removeItem('auth-storage');
-          window.location.href = '/lesson13/login';
+          console.error("Unable to refresh token, redirecting to login");
+          localStorage.removeItem("auth-storage");
+          window.location.href = "/lesson13/login";
           return Promise.reject(error);
         }
       } catch (refreshError: any) {
-        console.error('Refresh token failed:', refreshError);
+        console.error("Refresh token failed:", refreshError);
         processQueue(refreshError, null);
-        localStorage.removeItem('auth-storage');
-        window.location.href = '/login';
+        localStorage.removeItem("auth-storage");
+        window.location.href = "/lesson13/login";
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;
