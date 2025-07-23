@@ -2,21 +2,17 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   /* config options here */
-  images: {
+   images: {
+    // domains: ["antimatter.vn", "cdn.luatminhkhue.vn"],
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.example.com",
-        port: "",
-        pathname: "/account123/**",
-        search: "",
+        hostname: "**",
       },
-    ],
-    domains: [
-      "cdnv2.tgdd.vn",
-      "cdn.tgdd.vn",
-      "cdn.haitrieu.com",
-      "i.imgur.com",
+      {
+        protocol: "http",
+        hostname: "**",
+      },
     ],
   },
 };

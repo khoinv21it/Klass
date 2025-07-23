@@ -1,9 +1,8 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect } from "react";
 import { apiClient } from "../libraries/api-client";
 
-type Props = {};
-
-export default function UsersPage({}: Props) {
+export default function UsersPage() {
   const [users, setUsers] = React.useState<any[]>([]);
   const [roleById, setRoleById] = React.useState<Record<number, any[]>>({});
   const [showAddRoleModal, setShowAddRoleModal] = React.useState(false);
@@ -53,6 +52,7 @@ export default function UsersPage({}: Props) {
           setAllRoles(res.data || res);
         } catch (err) {
           setAllRoles([]);
+          console.error("Error fetching roles:", err);
         }
       };
       fetchRoles();
@@ -80,6 +80,7 @@ export default function UsersPage({}: Props) {
       setFullName("");
       setUsername("");
     } catch (err) {
+      console.error("Error adding user:", err);
       alert("Failed to add user");
     }
   };
@@ -127,6 +128,7 @@ export default function UsersPage({}: Props) {
               className="p-4 border rounded-lg bg-white shadow flex flex-col justify-between"
             >
               <div>
+                {/* <h1>{user.id}</h1> */}
                 <div className="font-bold text-lg mb-1">{user.fullName}</div>
                 <div className="text-gray-600 mb-2">
                   {roles.length === 0 ? (
@@ -156,6 +158,7 @@ export default function UsersPage({}: Props) {
                         await apiClient.delete(`/security/users/${user.id}`);
                         setUsers((prev) => prev.filter((u) => u.id !== user.id));
                       } catch (err) {
+                        console.error("Error deleting user:", err);
                         alert("Xóa user thất bại!");
                       }
                     }
@@ -226,6 +229,7 @@ export default function UsersPage({}: Props) {
                     );
                     setShowAddRoleModal(false);
                   } catch (err) {
+                    console.error("Error adding roles:", err);
                     alert("Gán vai trò thất bại!");
                   }
                 }}

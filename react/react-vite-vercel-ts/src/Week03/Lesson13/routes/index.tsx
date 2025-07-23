@@ -1,6 +1,7 @@
 import LoginPage from "../pages/LoginPage";
 import OurTasksPage from "../pages/OurTasksPage";
 import RolesPage from "../pages/RolesPage";
+import TestPage from "../pages/TestPage";
 import UsersPage from "../pages/UsersPage";
 
 const routes = [
@@ -38,6 +39,13 @@ const routes = [
     name: 'Members',
     showOnMenu: true,
     element: <div>memberpage</div>,
+    roles: ['member']
+  },
+  {
+    path: 'test',
+    name: 'Test',
+    showOnMenu: true,
+    element: <TestPage />,
     roles: ['member']
   },
 ]
