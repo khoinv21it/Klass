@@ -1,12 +1,13 @@
 plugins {
 	id 'java'
 	id 'war'
-	id 'org.springframework.boot' version '3.5.4'
+	id 'org.springframework.boot' version '3.5.5'
 	id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
+description = 'Manage employee test project for Spring Boot'
 
 java {
 	toolchain {
@@ -27,18 +28,18 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.boot:spring-boot-starter-validation' // For validation support
-	implementation 'org.hibernate.orm:hibernate-jcache:6.5.2.Final' // For JCache support
-	implementation 'org.ehcache:ehcache:3.10.8:jakarta' // Ehcache for second-level cache
-	implementation 'org.springframework.boot:spring-boot-starter-security' // For security support
 
-	implementation 'org.springframework.boot:spring-boot-starter-cache'
-	implementation 'org.springframework.boot:spring-boot-starter-data-redis' // For Redis support
-	// For JSON Web Token (JWT) support
+
+	//validation dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// Security dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	// JWT dependencies
 	implementation 'io.jsonwebtoken:jjwt-api:0.12.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.5'
 	runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.5'
-
+	
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -50,8 +51,4 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
-}
-
-tasks.withType(JavaCompile) {
-    options.compilerArgs += ['-parameters']
 }

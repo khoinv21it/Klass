@@ -44,8 +44,7 @@ public class StudentService {
         return convertToDto(createdStudent);
     }
 
-
-    @Cacheable(value = "students", key = "'#id'")
+    @Cacheable(value = "students", key = "#a0")
     public StudentResponseDto getStudentById(Long id) {
         System.out.println("Fetching student with ID: " + id);
         Student student = this.studentJpaRepository.findById(id).orElseThrow();
@@ -65,9 +64,12 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
-    @CachePut(value = "students", key = "'#id'")
+    @CachePut(value = "students", key = "#a0")
     @CacheEvict(value = "students", key = "'all'")
     public StudentResponseDto updateStudent(Long id, UpdateStudentRequestDto student) {
+        if (id == null) {
+            throw new IllegalArgumentException("Student ID cannot be null");
+        }
         Student existingStudent = this.studentJpaRepository.findById(id).orElseThrow();
         existingStudent.setName(student.getName());
         existingStudent.setAddress(student.getAddress());
@@ -83,7 +85,7 @@ public class StudentService {
                 .collect(Collectors.toList());
     }
 
-     // create method convert entity to dto
+    // create method convert entity to dto
     private StudentResponseDto convertToDto(Student student) {
         StudentResponseDto studentDto = new StudentResponseDto();
         studentDto.setId(student.getId());
