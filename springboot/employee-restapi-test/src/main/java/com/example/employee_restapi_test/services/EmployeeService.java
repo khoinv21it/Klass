@@ -16,7 +16,6 @@ import com.example.employee_restapi_test.entities.Employee;
 import com.example.employee_restapi_test.enums.Gender;
 import com.example.employee_restapi_test.repositories.EmployeeJpaRepository;
 import com.example.employee_restapi_test.repositories.projection.EmployeeProjection;
-import com.example.employee_restapi_test.repositories.projection.EmployeeResponseUpdateProjection;
 
 @Service
 public class EmployeeService {
@@ -28,11 +27,14 @@ public class EmployeeService {
 
     public EmployeeResponseDto convertToDto(Employee newEmployee) {
         return EmployeeResponseDto.builder()
+                .id(newEmployee.getId())
                 .fullName(newEmployee.getFullName())
                 .email(newEmployee.getEmail())
                 .dateOfBirth(newEmployee.getDateOfBirth())
                 .gender(newEmployee.getGender())
                 .phoneNumber(newEmployee.getPhoneNumber())
+                .active(newEmployee.getActive())
+                .createdAt(newEmployee.getCreatedAt())
                 .build();
     }
 
@@ -49,6 +51,7 @@ public class EmployeeService {
                 .createdAt(employeeProjection.getCreatedAt())
                 .build();
     }
+
     public EmployeeResponseUpdateDto convertUpdateToDto(Employee newEmployee) {
         return EmployeeResponseUpdateDto.builder()
                 .fullName(newEmployee.getFullName())
@@ -67,8 +70,8 @@ public class EmployeeService {
         newEmployee.setActive(true); // Assuming new employees are active by default
         newEmployee.setPhoneNumber(employee.getPhoneNumber());
         newEmployee.setHashedPassword(passwordEncoder.encode(employee.getPassword())); // Assuming password is hashed
-        employeeJpaRepository.save(newEmployee);
-        return convertToDto(newEmployee);
+        Employee saved = employeeJpaRepository.save(newEmployee);
+        return convertToDto(saved);
     }
 
     public List<EmployeeResponseDto> getAllEmployee() {
@@ -87,18 +90,15 @@ public class EmployeeService {
     }
 
     public EmployeeResponseUpdateDto updateEmployee(Long id, EmployeeUpdateRequestDto employeeUpdateRequest) {
-        Optional<EmployeeResponseUpdateProjection> optionalEmployee = employeeJpaRepository.findUpdateProjectionById(id);
-        if (optionalEmployee.isPresent()) {
-            Employee newEmployee = new Employee();
-            newEmployee.setFullName(employeeUpdateRequest.getFullName());
-            newEmployee.setDateOfBirth(employeeUpdateRequest.getDateOfBirth());
-            newEmployee.setGender(employeeUpdateRequest.getGender());
-            newEmployee.setPhoneNumber(employeeUpdateRequest.getPhoneNumber());
+        Employee existing = employeeJpaRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Employee not found"));
+        existing.setFullName(employeeUpdateRequest.getFullName());
+        existing.setDateOfBirth(employeeUpdateRequest.getDateOfBirth());
+        existing.setGender(employeeUpdateRequest.getGender());
+        existing.setPhoneNumber(employeeUpdateRequest.getPhoneNumber());
 
-            employeeJpaRepository.save(newEmployee);
-            return convertUpdateToDto(newEmployee);
-        }
-        throw new IllegalArgumentException("Employee not found");
+        employeeJpaRepository.save(existing);
+        return convertUpdateToDto(existing);
     }
 
     public void deleteEmployee(Long id) {
@@ -109,5 +109,4 @@ public class EmployeeService {
             throw new IllegalArgumentException("Employee not found");
         }
     }
-    
 }

@@ -19,6 +19,8 @@ import com.example.employee_restapi_test.dtos.EmployeeResponseUpdateDto;
 import com.example.employee_restapi_test.dtos.EmployeeUpdateRequestDto;
 import com.example.employee_restapi_test.services.EmployeeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/employees")
 public class EmployeeController {
@@ -28,7 +30,7 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<EmployeeResponseDto> createEmployee(
-            @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto) {
+            @Valid @RequestBody EmployeeCreateRequestDto employeeCreateRequestDto) {
         EmployeeResponseDto createdEmployee = employeeService.createEmployee(employeeCreateRequestDto);
         return ResponseEntity.ok(createdEmployee);
     }
@@ -47,7 +49,7 @@ public class EmployeeController {
 
     @PutMapping("{id}")
     public ResponseEntity<EmployeeResponseUpdateDto> updateEmployee(@PathVariable("id") Long id,
-            @RequestBody EmployeeUpdateRequestDto employeeUpdateRequest) {
+            @Valid @RequestBody EmployeeUpdateRequestDto employeeUpdateRequest) {
         EmployeeResponseUpdateDto updatedEmployee = employeeService.updateEmployee(id, employeeUpdateRequest);
         return ResponseEntity.ok(updatedEmployee);
     }
