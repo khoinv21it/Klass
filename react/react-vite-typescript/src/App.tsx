@@ -1,5 +1,5 @@
 import "./App.css";
-import Week01 from "./Week01";
+// import Week01 from "./Week01";
 import Week02 from "./Week02";
 
 function App() {
