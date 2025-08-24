@@ -2,24 +2,18 @@ import axios from "axios";
 import { BASE_URL } from "../../constants";
 import type { IEmployee } from "./employee.type";
 
-export const fetchEmployees = async (): Promise<IEmployee[]> => {
+export const fetchEmployees = async ():Promise<IEmployee[]> => {
   const response = await axios.get(`${BASE_URL}/employees`);
-  console.log("Fetched employees:", response.data);
+  return response.data;
+}
+
+export const createEmployee = async (data: Partial<IEmployee>): Promise<IEmployee> => {
+  const response = await axios.post(`${BASE_URL}/employees`, data);
   return response.data;
 };
 
-export const createEmployee = async (
-  payload: Partial<IEmployee>
-): Promise<IEmployee> => {
-  const response = await axios.post(`${BASE_URL}/employees`, payload);
-  return response.data;
-};
-
-export const updateEmployee = async (
-  id: number,
-  payload: Partial<IEmployee>
-): Promise<IEmployee> => {
-  const response = await axios.put(`${BASE_URL}/employees/${id}`, payload);
+export const updateEmployee = async (id: number, data: Partial<IEmployee>): Promise<IEmployee> => {
+  const response = await axios.put(`${BASE_URL}/employees/${id}`, data);
   return response.data;
 };
 

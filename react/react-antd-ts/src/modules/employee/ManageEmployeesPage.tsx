@@ -1,62 +1,32 @@
-import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { Table, Button, Space, Popconfirm, message } from "antd";
+import { Button, message, Popconfirm, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { IEmployee } from "./employee.type";
-import {
-  fetchEmployees,
-  getEmployeeById,
-  deleteEmployee,
-} from "./employee.service";
-import EmployeeCreateModal from "./components/EmployeeCreateModal";
-import EmployeeEditModal from "./components/EmployeeEditModal";
-import React from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { fetchEmployees, deleteEmployee, getEmployeeById } from "./employee.service";
+import { useState } from "react";
+import EmployeeCreateModal from "../components/EmployeeCreateModal";
+import EmployeeUpdateModal from "../components/EmployeeUpdateModal";
 
-export default function ManageEmployeesPage() {
-  const qc = useQueryClient();
+const ManageEmployeesPage = () => {
   const [messageApi, contextHolder] = message.useMessage();
+  const [createOpen, setCreateOpen] = useState(false);
+  const [updateOpen, setUpdateOpen] = useState(false);
+  const [selectedEmployee, setSelectedEmployee] = useState<IEmployee | null>(null);
+  const qc = useQueryClient();
 
-  const { data, isLoading, error } = useQuery<IEmployee[], Error>({
+  const { data, isLoading, isError } = useQuery<IEmployee[]>({
     queryKey: ["employees"],
     queryFn: fetchEmployees,
   });
 
-  const employees = data ?? [];
-
-  const [createOpen, setCreateOpen] = React.useState(false);
-  const [editOpen, setEditOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<IEmployee | null>(null);
-
-  const openCreate = () => setCreateOpen(true);
-  const closeCreate = () => setCreateOpen(false);
-
-  const openEdit = async (id: number) => {
-    const emp = await getEmployeeById(id);
-    setSelected(emp);
-    setEditOpen(true);
-  };
-  const closeEdit = () => setEditOpen(false);
-
-  const deleteMutation = useMutation({
-    mutationFn: (id: number) => deleteEmployee(id),
-    onSuccess: () => {
-      messageApi.success("Employee deleted");
-      qc.invalidateQueries({ queryKey: ["employees"] });
-    },
-    onError: (err: unknown) => {
-      const msg = err instanceof Error ? err.message : "Delete failed";
-      messageApi.error(msg);
-    },
-  });
-
-  const handleDelete = (id: number) => {
-    deleteMutation.mutate(id);
-  };
+  const employees = data || [];
 
   const columns: ColumnsType<IEmployee> = [
     {
       title: "Full name",
       dataIndex: "fullName",
       key: "fullName",
+      sorter: (a, b) => a.fullName.localeCompare(b.fullName),
     },
     {
       title: "Email",
@@ -68,6 +38,16 @@ export default function ManageEmployeesPage() {
       title: "Gender",
       dataIndex: "gender",
       key: "gender",
+      sorter: (a, b) => {
+        const genderOrder: Record<string, number> = {
+          MALE: 1,
+          FEMALE: 2,
+          OTHER: 3,
+        };
+        const aGender = a.gender ?? "";
+        const bGender = b.gender ?? "";
+        return (genderOrder[aGender] || 0) - (genderOrder[bGender] || 0);
+      },
     },
     {
       title: "Phone",
@@ -78,60 +58,97 @@ export default function ManageEmployeesPage() {
       title: "Active",
       dataIndex: "active",
       key: "active",
-      render: (active: boolean | null) => (active ? "Yes" : "No"),
     },
     {
       title: "Created at",
       dataIndex: "createdAt",
       key: "createdAt",
-      render: (v: string | null) => (v ? new Date(v).toLocaleString() : "-"),
     },
     {
       title: "Actions",
       key: "actions",
-      render: (_: unknown, record: IEmployee) => (
+      render: (_, record: IEmployee) => (
         <Space>
-          <Button onClick={() => openEdit(record.id)}>Edit</Button>
+          <Button type="link" onClick={() => openUpdate(record.id)}>
+            Edit
+          </Button>
+
           <Popconfirm
-            title={`Delete ${record.fullName}?`}
+            title="Are you sure to delete this employee?"
             onConfirm={() => handleDelete(record.id)}
-            okText="Delete"
-            cancelText="Cancel"
+            okText="Yes"
+            cancelText="No"
           >
-            <Button danger>Delete</Button>
+            <Button type="link" danger>
+              Delete
+            </Button>
           </Popconfirm>
         </Space>
       ),
     },
   ];
 
-  if (isLoading) return <div>Loading employees...</div>;
-  if (error) return <div>Error loading employees: {error.message}</div>;
+  const deleteMutation = useMutation<void, unknown, number>({
+    mutationFn: (id) => deleteEmployee(id),
+    onSuccess: () => {
+      messageApi.success("Employee deleted");
+      qc.invalidateQueries({ queryKey: ["employees"] });
+    },
+    onError: (err: unknown) => {
+      const msg = err instanceof Error ? err.message : "Delete failed";
+      messageApi.error(msg);
+    },
+  });
+
+  const handleDelete = async (id: number) => {
+    deleteMutation.mutate(id);
+  };
+  const openCreate = () => {
+    setCreateOpen(true);
+  };
+  const closeCreate = () => {
+    setCreateOpen(false);
+  };
+  const openUpdate = async(id : number) => {
+    const employee = await getEmployeeById(id);
+    setSelectedEmployee(employee);
+    setUpdateOpen(true);
+  };
+  const closeUpdate = () => {
+    setSelectedEmployee(null);
+    setUpdateOpen(false);
+  };
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError) return <div>Error loading employees</div>;
 
   return (
     <div>
       {contextHolder}
-      <Button type="primary" onClick={openCreate} style={{ marginBottom: 12 }}>
+      <Button type="primary" onClick={openCreate} className="mb-4">
         Create Employee
       </Button>
       <Table<IEmployee>
-        dataSource={employees}
+        dataSource={employees || []}
         columns={columns}
         rowKey="id"
-        pagination={{ pageSize: 4 }}
+        pagination={{ pageSize: 8 }}
       />
 
       <EmployeeCreateModal
-        visible={createOpen}
+        open={createOpen}
         onClose={closeCreate}
         messageApi={messageApi}
       />
-      <EmployeeEditModal
-        visible={editOpen}
-        onClose={closeEdit}
-        employee={selected}
+
+      <EmployeeUpdateModal
+        open={updateOpen}
+        onClose={closeUpdate}
+        employee={selectedEmployee}
         messageApi={messageApi}
       />
     </div>
   );
-}
+};
+
+export default ManageEmployeesPage;
