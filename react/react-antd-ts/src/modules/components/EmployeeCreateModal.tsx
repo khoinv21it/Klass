@@ -1,4 +1,5 @@
-import { Modal, Form, Input, Select, message } from "antd";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Modal, Form, Input, Select, message, DatePicker } from "antd";
 import { createEmployee } from "../employee/employee.service";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import type { IEmployee } from "../employee/employee.type";
@@ -36,7 +37,13 @@ export default function EmployeeCreateModal({
   const handleOk = async () => {
     try {
       const values = await form.validateFields();
-      mutation.mutate(values as Partial<IEmployee>);
+      // convert DatePicker value (dayjs/moment) to YYYY-MM-DD string if necessary
+      const payload: any = { ...values };
+      const dob = payload.dateOfBirth;
+      if (dob && typeof dob === "object" && typeof dob.format === "function") {
+        payload.dateOfBirth = dob.format("YYYY-MM-DD");
+      }
+      mutation.mutate(payload as Partial<IEmployee>);
     } catch (e) {
       // validation error
       console.log("Validation failed:", e);
@@ -68,8 +75,18 @@ export default function EmployeeCreateModal({
         >
           <Input />
         </Form.Item>
-        <Form.Item label="Phone Number" name="phoneNumber"
-          rules={[ { len: 10, message: "Phone number must be 10 digits" }]}>
+        <Form.Item
+          label="Date of Birth"
+          name="dateOfBirth"
+          rules={[{ required: true, message: "Please select date of birth" }]}
+        >
+          <DatePicker format="YYYY-MM-DD" style={{ width: "100%" }} />
+        </Form.Item>
+        <Form.Item
+          label="Phone Number"
+          name="phoneNumber"
+          rules={[{ len: 10, message: "Phone number must be 10 digits" }]}
+        >
           <Input />
         </Form.Item>
         <Form.Item label="Password" name="password">

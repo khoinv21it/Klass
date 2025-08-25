@@ -2,7 +2,11 @@ import { Button, message, Popconfirm, Space, Table } from "antd";
 import type { ColumnsType } from "antd/es/table";
 import type { IEmployee } from "./employee.type";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { fetchEmployees, deleteEmployee, getEmployeeById } from "./employee.service";
+import {
+  fetchEmployees,
+  deleteEmployee,
+  getEmployeeById,
+} from "./employee.service";
 import { useState } from "react";
 import EmployeeCreateModal from "../components/EmployeeCreateModal";
 import EmployeeUpdateModal from "../components/EmployeeUpdateModal";
@@ -11,7 +15,9 @@ const ManageEmployeesPage = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [createOpen, setCreateOpen] = useState(false);
   const [updateOpen, setUpdateOpen] = useState(false);
-  const [selectedEmployee, setSelectedEmployee] = useState<IEmployee | null>(null);
+  const [selectedEmployee, setSelectedEmployee] = useState<IEmployee | null>(
+    null
+  );
   const qc = useQueryClient();
 
   const { data, isLoading, isError } = useQuery<IEmployee[]>({
@@ -55,14 +61,23 @@ const ManageEmployeesPage = () => {
       key: "phoneNumber",
     },
     {
+      title: "Date of Birth",
+      dataIndex: "dateOfBirth",
+      key: "dateOfBirth",
+      render: (v: string | null) =>
+        v ? new Date(v).toLocaleDateString() : "-",
+    },
+    {
       title: "Active",
       dataIndex: "active",
       key: "active",
+      render: (active: boolean | null) => (active ? "Yes" : "No"),
     },
     {
       title: "Created at",
       dataIndex: "createdAt",
       key: "createdAt",
+      render: (v: string | null) => (v ? new Date(v).toLocaleString() : "-"),
     },
     {
       title: "Actions",
@@ -109,7 +124,7 @@ const ManageEmployeesPage = () => {
   const closeCreate = () => {
     setCreateOpen(false);
   };
-  const openUpdate = async(id : number) => {
+  const openUpdate = async (id: number) => {
     const employee = await getEmployeeById(id);
     setSelectedEmployee(employee);
     setUpdateOpen(true);
