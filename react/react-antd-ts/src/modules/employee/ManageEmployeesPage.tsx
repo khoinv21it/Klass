@@ -8,8 +8,8 @@ import {
   getEmployeeById,
 } from "./employee.service";
 import { useState } from "react";
-import EmployeeCreateModal from "../components/EmployeeCreateModal";
-import EmployeeUpdateModal from "../components/EmployeeUpdateModal";
+import EmployeeCreateModal from "./components/EmployeeCreateModal";
+import EmployeeUpdateModal from "./components/EmployeeUpdateModal";
 
 const ManageEmployeesPage = () => {
   const [messageApi, contextHolder] = message.useMessage();

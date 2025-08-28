@@ -1,9 +1,9 @@
 
 import { Modal, Input, Form, Select, message } from "antd";
 import type { MessageInstance } from "antd/es/message/interface";
-import type { IEmployee } from "../employee/employee.type";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { updateEmployee } from "../employee/employee.service";
+import type { IEmployee } from "../employee.type";
+import { updateEmployee } from "../employee.service";
 
 type Props = {
   open: boolean;
