@@ -19,4 +19,6 @@ public interface EmployeeJpaRepository extends JpaRepository<Employee, Long> {
     // get using EmployeeResponseUpdateProjection
     Optional<EmployeeResponseUpdateProjection> findUpdateProjectionById(Long id);
 
+    Optional<Employee> findByEmail(String email);
+
 }

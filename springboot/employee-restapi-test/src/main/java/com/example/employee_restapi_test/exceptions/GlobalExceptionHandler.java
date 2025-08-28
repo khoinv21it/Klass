@@ -1,9 +1,6 @@
 package com.example.employee_restapi_test.exceptions;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,18 +10,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-    // @ExceptionHandler(MethodArgumentNotValidException.class)
-    // public ResponseEntity<Map<String, List<String>>>
-    // handleValidationExceptions(MethodArgumentNotValidException ex) {
-    // Map<String, List<String>> errors = new HashMap<>();
-    // ex.getBindingResult().getAllErrors().forEach((error) -> {
-    // String fieldName = ((FieldError) error).getField();
-    // String errorMessage = error.getDefaultMessage();
-    // errors.computeIfAbsent(fieldName, k -> new ArrayList<>()).add(errorMessage);
-    // });
-    // return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-    // }
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<CustomErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
         List<String> messages = ex.getBindingResult()
@@ -39,11 +24,10 @@ public class GlobalExceptionHandler {
 
     // Other exception handlers can be added here
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, List<String>>> handleGeneralException(Exception ex) {
-        Map<String, List<String>> errors = new HashMap<>();
-        errors.computeIfAbsent("errors", k -> new ArrayList<>()).add(ex.getMessage());
-
-        return new ResponseEntity<>(errors, HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<CustomErrorResponse> handleGeneralException(Exception ex) {
+        List<String> messages = List.of(ex.getMessage());
+        CustomErrorResponse response = new CustomErrorResponse(messages, "Internal Server Error", 500);
+        return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

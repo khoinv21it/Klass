@@ -26,6 +26,12 @@ const DashboardLayout: React.FC = () => {
       icon: <VideoCameraOutlined />,
       path: "/employees",
     },
+    {
+      key: "3",
+      label: "Employees Query Management",
+      icon: <VideoCameraOutlined />,
+      path: "/employees-query",
+    },
     // { key: '3', label: 'nav 3', icon: <UploadOutlined /> },
   ];
 

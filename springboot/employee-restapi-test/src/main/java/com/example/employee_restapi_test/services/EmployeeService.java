@@ -62,6 +62,10 @@ public class EmployeeService {
     }
 
     public EmployeeResponseDto createEmployee(EmployeeCreateRequestDto employee) {
+        Optional<Employee> existing = employeeJpaRepository.findByEmail(employee.getEmail());
+        if (existing.isPresent()) {
+            throw new IllegalArgumentException("Email already exists");
+        }
         Employee newEmployee = new Employee();
         newEmployee.setFullName(employee.getFullName());
         newEmployee.setEmail(employee.getEmail());
@@ -93,7 +97,7 @@ public class EmployeeService {
         Employee existing = employeeJpaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Employee not found"));
         existing.setFullName(employeeUpdateRequest.getFullName());
-        existing.setDateOfBirth(employeeUpdateRequest.getDateOfBirth());
+        existing.setDateOfBirth(java.time.LocalDate.parse(employeeUpdateRequest.getDateOfBirth()));
         existing.setGender(employeeUpdateRequest.getGender());
         existing.setPhoneNumber(employeeUpdateRequest.getPhoneNumber());
 
@@ -108,5 +112,10 @@ public class EmployeeService {
         } else {
             throw new IllegalArgumentException("Employee not found");
         }
+    }
+
+    // check if email exists
+    public boolean emailExists(String email) {
+        return employeeJpaRepository.findByEmail(email).isPresent();
     }
 }
